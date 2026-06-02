@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://mgp02mkor0at"]
+
+[ext_resource type="Shader" uid="uid://dlt7iso3hpytb" path="res://hills.gdshader" id="1_noarx"]
+[ext_resource type="Shader" uid="uid://buhp4x4jmw7ng" path="res://Water.gdshader" id="3_a0tk4"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="4_r3fl7"]
+[ext_resource type="Shader" uid="uid://dknce1v5ccteg" path="res://smoke.gdshader" id="5_jka67"]
+
+[sub_resource type="Gradient" id="Gradient_r3fl7"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.17741935, 0.32258064, 0.37903225, 0.7903226, 1)
+colors = PackedColorArray(0.29000002, 0.29000002, 1, 1, 0.37873903, 0.29615402, 0.798794, 1, 0.64347994, 0.33797765, 0.104899324, 1, 0.15114257, 0.23339394, 0.10268698, 1, 0.087400004, 0.38, 0.17517999, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jka67"]
+gradient = SubResource("Gradient_r3fl7")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_r3fl7"]
+frequency = 0.0379
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jka67"]
+noise = SubResource("FastNoiseLite_r3fl7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i5arm"]
+render_priority = 0
+shader = ExtResource("1_noarx")
+shader_parameter/noise = SubResource("NoiseTexture2D_jka67")
+shader_parameter/escala_altura = -0.035
+shader_parameter/gradient_texture = SubResource("GradientTexture1D_jka67")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wc5p8"]
+lightmap_size_hint = Vector2i(12, 12)
+subdivide_width = 50
+subdivide_depth = 50
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i5arm"]
+seed = 30
+frequency = 0.0077
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wc5p8"]
+noise = SubResource("FastNoiseLite_i5arm")
+seamless = true
+as_normal_map = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jsk3o"]
+render_priority = 0
+shader = ExtResource("3_a0tk4")
+shader_parameter/roughness = 0.0
+shader_parameter/time_scale = 4.0
+shader_parameter/uv_scale = 2.75
+shader_parameter/water_color = Color(0.003921569, 0.15294118, 0.3137255, 1)
+shader_parameter/water_normal_noise = SubResource("NoiseTexture2D_wc5p8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jka67"]
+albedo_texture = ExtResource("4_r3fl7")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_i5arm"]
+material = SubResource("StandardMaterial3D_jka67")
+
+[sub_resource type="Gradient" id="Gradient_i5arm"]
+offsets = PackedFloat32Array(0.37903225, 0.5322581)
+colors = PackedColorArray(1, 1, 1, 1, 0.3, 0.3, 0.3, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wc5p8"]
+gradient = SubResource("Gradient_i5arm")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jsk3o"]
+noise_type = 2
+seed = 24
+frequency = 0.0236
+offset = Vector3(-119.04, 0, 0)
+fractal_type = 2
+fractal_lacunarity = 2.38
+fractal_gain = 0.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4arys"]
+width = 1000
+height = 1000
+noise = SubResource("FastNoiseLite_jsk3o")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wc5p8"]
+render_priority = 0
+shader = ExtResource("5_jka67")
+shader_parameter/fire_gradient = SubResource("GradientTexture1D_wc5p8")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_4arys")
+shader_parameter/speed = 1.0
+shader_parameter/varying_color = 1.63
+
+[sub_resource type="SphereMesh" id="SphereMesh_jsk3o"]
+
+[node name="Node3D" type="Node3D" unique_id=335330512]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1109163118]
+transform = Transform3D(-0.9426415, 0.33380693, 1.4591165e-08, 0, -4.371139e-08, 1, 0.33380693, 0.9426415, 4.1204167e-08, 0, 0, 0)
+light_energy = 2.75
+shadow_enabled = true
+directional_shadow_max_distance = 260.0
+
+[node name="hills" type="MeshInstance3D" parent="." unique_id=1272983008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21241856, 0.27258456, -0.027233243)
+material_override = SubResource("ShaderMaterial_i5arm")
+mesh = SubResource("PlaneMesh_wc5p8")
+
+[node name="Water" type="MeshInstance3D" parent="." unique_id=268972187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8218932, 0.2680955, -0.02462101)
+material_override = SubResource("ShaderMaterial_jsk3o")
+mesh = SubResource("PlaneMesh_wc5p8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Water" unique_id=63678781]
+transform = Transform3D(1.7806721, 0, 0, 0, 1, 0, 0, 0, 1.6874676, 0, -0.07237935, 0)
+mesh = SubResource("PlaneMesh_i5arm")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=534938624]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.994086, 0.44160718, -0.14881614)
+material_override = SubResource("ShaderMaterial_wc5p8")
+mesh = SubResource("SphereMesh_jsk3o")
