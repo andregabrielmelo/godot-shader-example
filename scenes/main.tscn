@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://mgp02mkor0at"]
 
-[ext_resource type="Shader" uid="uid://dlt7iso3hpytb" path="res://hills.gdshader" id="1_noarx"]
-[ext_resource type="Shader" uid="uid://buhp4x4jmw7ng" path="res://Water.gdshader" id="3_a0tk4"]
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="4_r3fl7"]
-[ext_resource type="Shader" uid="uid://dknce1v5ccteg" path="res://smoke.gdshader" id="5_jka67"]
+[ext_resource type="Shader" uid="uid://dlt7iso3hpytb" path="res://shaders/hills.gdshader" id="1_xvgsr"]
+[ext_resource type="Shader" uid="uid://buhp4x4jmw7ng" path="res://shaders/water.gdshader" id="2_oqwcg"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="3_a6664"]
+[ext_resource type="Shader" uid="uid://dknce1v5ccteg" path="res://shaders/smoke.gdshader" id="4_10v3s"]
 
 [sub_resource type="Gradient" id="Gradient_r3fl7"]
 interpolation_mode = 2
@@ -21,7 +21,7 @@ noise = SubResource("FastNoiseLite_r3fl7")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i5arm"]
 render_priority = 0
-shader = ExtResource("1_noarx")
+shader = ExtResource("1_xvgsr")
 shader_parameter/noise = SubResource("NoiseTexture2D_jka67")
 shader_parameter/escala_altura = -0.035
 shader_parameter/gradient_texture = SubResource("GradientTexture1D_jka67")
@@ -43,7 +43,7 @@ as_normal_map = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jsk3o"]
 render_priority = 0
-shader = ExtResource("3_a0tk4")
+shader = ExtResource("2_oqwcg")
 shader_parameter/roughness = 0.0
 shader_parameter/time_scale = 4.0
 shader_parameter/uv_scale = 2.75
@@ -51,7 +51,7 @@ shader_parameter/water_color = Color(0.003921569, 0.15294118, 0.3137255, 1)
 shader_parameter/water_normal_noise = SubResource("NoiseTexture2D_wc5p8")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jka67"]
-albedo_texture = ExtResource("4_r3fl7")
+albedo_texture = ExtResource("3_a6664")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i5arm"]
 material = SubResource("StandardMaterial3D_jka67")
@@ -79,7 +79,7 @@ noise = SubResource("FastNoiseLite_jsk3o")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wc5p8"]
 render_priority = 0
-shader = ExtResource("5_jka67")
+shader = ExtResource("4_10v3s")
 shader_parameter/fire_gradient = SubResource("GradientTexture1D_wc5p8")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_4arys")
 shader_parameter/speed = 1.0
