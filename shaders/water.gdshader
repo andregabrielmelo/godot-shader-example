@@ -1,6 +1,6 @@
 shader_type spatial;
 
-uniform float roughness;
+uniform float roughness : hint_range(0.0, 1.0, 0.01) = 0.5;
 uniform float time_scale : hint_range(0.0, 10.0, 0.25) = 1.0;
 uniform float uv_scale : hint_range(0.0, 10.0, 0.25) = 1.0;
 uniform vec3 water_color : source_color;

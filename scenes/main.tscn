@@ -26,8 +26,14 @@ shader_parameter/noise = SubResource("NoiseTexture2D_jka67")
 shader_parameter/escala_altura = -0.035
 shader_parameter/gradient_texture = SubResource("GradientTexture1D_jka67")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
+render_priority = 0
+shader = ExtResource("1_xvgsr")
+shader_parameter/escala_altura = 0.5
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_wc5p8"]
 lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("ShaderMaterial_jyhfs")
 subdivide_width = 50
 subdivide_depth = 50
 
