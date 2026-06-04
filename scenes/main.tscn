@@ -93,15 +93,15 @@ shader_parameter/varying_color = 1.63
 
 [sub_resource type="SphereMesh" id="SphereMesh_jsk3o"]
 
-[node name="Node3D" type="Node3D" unique_id=335330512]
+[node name="Main" type="Node3D" unique_id=335330512]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1109163118]
+[node name="Luz" type="DirectionalLight3D" parent="." unique_id=1109163118]
 transform = Transform3D(-0.9426415, 0.33380693, 1.4591165e-08, 0, -4.371139e-08, 1, 0.33380693, 0.9426415, 4.1204167e-08, 0, 0, 0)
 light_energy = 2.75
 shadow_enabled = true
 directional_shadow_max_distance = 260.0
 
-[node name="hills" type="MeshInstance3D" parent="." unique_id=1272983008]
+[node name="Hills" type="MeshInstance3D" parent="." unique_id=1272983008]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21241856, 0.27258456, -0.027233243)
 material_override = SubResource("ShaderMaterial_i5arm")
 mesh = SubResource("PlaneMesh_wc5p8")
@@ -115,7 +115,7 @@ mesh = SubResource("PlaneMesh_wc5p8")
 transform = Transform3D(1.7806721, 0, 0, 0, 1, 0, 0, 0, 1.6874676, 0, -0.07237935, 0)
 mesh = SubResource("PlaneMesh_i5arm")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=534938624]
+[node name="Smoke" type="MeshInstance3D" parent="." unique_id=534938624]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.994086, 0.44160718, -0.14881614)
 material_override = SubResource("ShaderMaterial_wc5p8")
 mesh = SubResource("SphereMesh_jsk3o")
